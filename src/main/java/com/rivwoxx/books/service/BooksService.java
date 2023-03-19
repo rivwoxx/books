@@ -1,12 +1,12 @@
 package com.rivwoxx.books.service;
 
-import com.rivwoxx.books.model.AllBooksResponse;import com.rivwoxx.books.model.BooksByIsbnRequest;import com.rivwoxx.books.model.BooksResponse;import org.springframework.stereotype.Service;
+import com.rivwoxx.books.model.AllBooksResponse;import com.rivwoxx.books.model.BooksByIsbnRequest;import com.rivwoxx.books.model.BooksModel;
 
 public interface BooksService {
 
-    BooksResponse getBooksByISBN(BooksByIsbnRequest request);
+    BooksModel getBooksByISBN(BooksByIsbnRequest request);
 
     AllBooksResponse getAllBooks();
 
-    Void createNewBook(BooksResponse request);
+    Void createNewBook(BooksModel request);
 }

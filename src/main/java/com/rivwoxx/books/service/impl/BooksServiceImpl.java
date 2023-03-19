@@ -4,7 +4,9 @@ import com.rivwoxx.books.model.*;
 import com.rivwoxx.books.respository.BooksRepository;
 import com.rivwoxx.books.service.BooksService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;import org.springframework.http.HttpStatus;import org.springframework.http.ResponseEntity;import org.springframework.stereotype.Service;import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Objects;import java.util.stream.Collectors;
 
@@ -29,7 +31,7 @@ public class BooksServiceImpl implements BooksService {
    * @return BooksDbResponse.
    */
   @Override
-  public BooksResponse getBooksByISBN(BooksByIsbnRequest request) {
+  public BooksModel getBooksByISBN(BooksByIsbnRequest request) {
     BooksDbResponse dbResponse = repository.getBooksByISBN(request.getIsbn());
     notNullValidation(dbResponse);
     return setBooksResponse(dbResponse);
@@ -45,7 +47,7 @@ public class BooksServiceImpl implements BooksService {
     log.info("Getting all the books in DB");
     List<BooksDbResponse> dbResponseList = repository.findAll();
 
-    List<BooksResponse> booksResponses =
+    List<BooksModel> booksResponses =
         dbResponseList.stream()
             .limit(dbResponseList.size())
             .map(this::setBooksResponse)
@@ -57,7 +59,7 @@ public class BooksServiceImpl implements BooksService {
   }
 
   @Override
-  public Void createNewBook(BooksResponse request) {
+  public Void createNewBook(BooksModel request) {
     BooksDbResponse dbRequest = new BooksDbResponse();
     dbRequest.setTitle(request.getTitle());
     dbRequest.setAuthor(request.getAuthor());
@@ -77,8 +79,8 @@ public class BooksServiceImpl implements BooksService {
    * @param dbResponse DBResponse.
    * @return BooksResponse.
    */
-  private BooksResponse setBooksResponse(BooksDbResponse dbResponse) {
-    BooksResponse response = new BooksResponse();
+  private BooksModel setBooksResponse(BooksDbResponse dbResponse) {
+    BooksModel response = new BooksModel();
 
     response.setTitle(dbResponse.getTitle());
     response.setAuthor(dbResponse.getAuthor());

@@ -9,5 +9,5 @@ import java.util.List;
 @Getter
 public class AllBooksResponse {
 
-  private List<BooksResponse> books;
+  private List<BooksModel> books;
 }
