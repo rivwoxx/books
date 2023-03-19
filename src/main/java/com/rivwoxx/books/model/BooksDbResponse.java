@@ -3,6 +3,7 @@ package com.rivwoxx.books.model;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+// import javax.persistence.*;
 
 @Setter
 @Getter
@@ -12,7 +13,7 @@ public class BooksDbResponse {
 
   @Id
   @Column(name = "Id")
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column(name = "title")
